@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Helper;
-use Illuminate\Http\JsonResponse;
+namespace App\Helper;
 
 class ResponseHelper
 {
-    public static function Out($msg, $data, $code): JsonResponse
+    public static function Out($msg, $data, $code)
     {
         return response()->json([
             'message' => $msg,

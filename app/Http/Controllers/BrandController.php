@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Helper\ResponseHelper;
+use App\Helper\ResponseHelper;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 

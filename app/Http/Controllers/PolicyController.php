@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ResponseHelper;
+use App\Models\Policie;
 use Illuminate\Http\Request;
 
 class PolicyController extends Controller
@@ -9,9 +11,10 @@ class PolicyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $policy = Policie::where('type', $request->type)->first();
+        return ResponseHelper::Out('success', $policy, 200);
     }
 
     /**
