@@ -2,63 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ResponseHelper;
+use App\Models\CustomerProfile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function createProfile(Request $request)
     {
-        //
+        $userId = $request->header('id');
+        $request->merge(['user_id' => $userId]);
+
+        $data = CustomerProfile::updateOrCreate(
+            ['user_id' => $userId],
+            $request->input()
+        );
+
+        return ResponseHelper::Out('Profile created successfully', $data, 200); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function readProfile(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $userId = $request->header('id');
+        $data = CustomerProfile::where('user_id', $userId)->first();
+        return ResponseHelper::Out('success', $data, 200);
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('cus_details', 500);
             $table->string('ship_details', 500);
             $table->string('tran_id', 100);
-            $table->string('val_id', 100);
+            $table->string('val_id', 100)->default('0');
             $table->enum('delivery_status', ['Pending', 'Processing', 'Completed'])->default('Pending');
             $table->enum('payment_status', ['Pending', 'Success', 'Fail', 'Cancel'])->default('Pending');
 
